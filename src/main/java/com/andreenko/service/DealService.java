@@ -16,4 +16,5 @@ public interface DealService {
     void addDefaultRecord();
     List<Deal> getDoneDeals();
     List<Deal> getNotDoneDeals();
+    List<Deal> getDealForId(int i);
 }

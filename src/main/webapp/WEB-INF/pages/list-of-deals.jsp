@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
@@ -11,8 +12,26 @@
 <title>Список дел</title>
 </head>
 <body>
+<p><a href="${pageContext.request.contextPath}/index.html">Домашняя страница</a></p>
 <h1>Список дел</h1>
+<form action="test.form" method="get">
+	<input type="text" name="name">
+	<input type="submit">
+</form>
 <p>Ваш список</p>
+<table border="1px" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td><input type="button"  onclick="location.href='/deal/all_deal.html'" value="Все дела" />
+
+		</td>
+		<td><input type="button"  onclick="location.href='/deal/done_deal.html'" value="Выполненые" />
+
+		</td>
+		<td><input type="button"  onclick="location.href='/deal/not_done_deal.html'" value="Не выполненые" />
+
+		</td>
+	</tr>
+</table>
 <table border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 <tr>
@@ -35,24 +54,6 @@
 </tbody>
 </table>
 
-
-<table border="1px" cellpadding="0" cellspacing="0" >
-		<tr>
-			<td><input type="button"  onclick="location.href='/deal/all_deal.html'" value="Все дела" />
-
-			</td>
-			<td><input type="button"  onclick="location.href='/deal/done_deal.html'" value="Выполненые" />
-
-			</td>
-			<td><input type="button"  onclick="location.href='/deal/not_done_deal.html'" value="Не выполненые" />
-
-			</td>
-		</tr>
-</table>
-
-
-
-<p><a href="${pageContext.request.contextPath}/index.html">Домашняя страница</a></p>
 
 </body>
 </html>

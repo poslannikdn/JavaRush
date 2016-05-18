@@ -2,14 +2,10 @@ package com.andreenko.controller;
 
 import com.andreenko.model.Deal;
 import com.andreenko.service.DealService;
-import org.dom4j.rule.Mode;
-import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
@@ -24,6 +20,16 @@ import java.util.List;
 public class DealController {
     @Autowired
     private DealService dealService;
+
+    @RequestMapping(value = "/test.form",method = RequestMethod.GET)
+    public ModelAndView test(@RequestParam("name") String param){
+        System.out.println("param" +" " + param);
+        ModelAndView modelAndView = new ModelAndView("list-of-deals");
+        List<Deal> deals = dealService.getDealForId(Integer.parseInt(param));
+        modelAndView.addObject("deals", deals);
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/all_deal")
     public ModelAndView allDeal(){
         ModelAndView modelAndView = new ModelAndView("list-of-deals");

@@ -57,4 +57,9 @@ dealDAO.updateDeal(deal);
     public List<Deal> getNotDoneDeals() {
         return dealDAO.getNotDoneDeals();
     }
+
+    @Override
+    public List<Deal> getDealForId(int i) {
+        return dealDAO.getDealForId(i);
+    }
 }

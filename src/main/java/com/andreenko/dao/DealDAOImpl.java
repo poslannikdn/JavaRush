@@ -114,4 +114,9 @@ public class DealDAOImpl implements DealDAO {
     public List<Deal> getNotDoneDeals() {
         return getCurrentSession().createQuery("from Deal where done='0'").list();
     }
+
+    @Override
+    public List<Deal> getDealForId(int i) {
+        return  getCurrentSession().createQuery("from Deal where id='"+i+"'").list();
+    }
 }
