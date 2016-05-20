@@ -14,8 +14,8 @@ public interface DealDAO {
     void deleteDeal(int id);
     List<Deal> getDeals();
     void addDefaultRecord();
-
     List<Deal> getDoneDeals();
     List<Deal> getNotDoneDeals();
     List<Deal> getDealForId(int i);
+    Integer getCount();
 }

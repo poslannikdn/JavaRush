@@ -62,4 +62,9 @@ dealDAO.updateDeal(deal);
     public List<Deal> getDealForId(int i) {
         return dealDAO.getDealForId(i);
     }
+
+    @Override
+    public Integer getCount() {
+        return dealDAO.getCount();
+    }
 }

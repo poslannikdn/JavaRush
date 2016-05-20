@@ -17,4 +17,5 @@ public interface DealService {
     List<Deal> getDoneDeals();
     List<Deal> getNotDoneDeals();
     List<Deal> getDealForId(int i);
+    Integer getCount();
 }

@@ -9,45 +9,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"  />
-<title>Список дел</title>
+<title>Полный список дел</title>
 </head>
 <body>
 <p><a href="${pageContext.request.contextPath}/index.html">Домашняя страница</a></p>
-<h1>Список дел</h1>
-<p>Найти дело по id</p>
-<form action="${pageContext.request.contextPath}/deal/test.html" method="get">
-	<input type="text" name="name">
-	<input type="submit">
-</form>
+<h1>Полный список дел</h1>
+
 <p>Ваш список</p>
-<table border="1px" cellpadding="0" cellspacing="0" >
-	<tr>
-		<td><input type="button"  onclick="location.href='/deal/all_deal.html'" value="Все дела" />
-		</td>
-		<td><input type="button"  onclick="location.href='/deal/done_deal.html'" value="Выполненые" />
-		</td>
-		<td><input type="button"  onclick="location.href='/deal/not_done_deal.html'" value="Не выполненые" />
-		</td>
-	</tr>
-</table>
-
-<table border="1px" cellpadding="0" cellspacing="0" >
-	<tbody>
-	<%--For displaying Previous link except for the 1st page --%>
-	<c:if test="${currentPage != 1}">
-		<td><a href="${pageContext.request.contextPath}/deal/lister/${currentPage - 1}.html">Previous</a></td>
-	</c:if>
-	<%--For displaying Next link --%>
-	<c:if test="${currentPage lt maxPages}">
-		<td><a href="${pageContext.request.contextPath}/deal/lister/${currentPage + 1}.html">Next</a></td>
-	</c:if>
-	</tbody>
-</table>
-
-
-
-
-
 <table border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 <tr>

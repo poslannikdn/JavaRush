@@ -3,6 +3,7 @@ package com.andreenko.dao;
 import com.andreenko.model.Deal;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -118,5 +119,12 @@ public class DealDAOImpl implements DealDAO {
     @Override
     public List<Deal> getDealForId(int i) {
         return  getCurrentSession().createQuery("from Deal where id='"+i+"'").list();
+    }
+
+    @Override
+    public Integer getCount() {
+        Long l = (Long) getCurrentSession().createCriteria(Deal.class).setProjection(Projections.rowCount()).uniqueResult();
+        Integer i = new Integer(String.valueOf(l));
+        return i;
     }
 }
