@@ -34,7 +34,7 @@
 <table border="1px" cellpadding="0" cellspacing="0" >
 	<tbody>
 	<%--For displaying Previous link except for the 1st page --%>
-	<c:if test="${currentPage != 1}">
+	<c:if test="${currentPage > 0}">
 		<td><a href="${pageContext.request.contextPath}/deal/lister/${currentPage - 1}.html">Previous</a></td>
 	</c:if>
 	<%--For displaying Next link --%>

@@ -22,22 +22,42 @@ public class DealController {
     private DealService dealService;
     private static ModelAndView modelAndView;
     private static List<Deal> deals;
+    private static int count = 0;
+    private static TypeRequest typeRequest = TypeRequest.All;
 
 
     @RequestMapping(value = "/lister/{page}")
     public ModelAndView nextPage(@PathVariable Integer page) {
+
         modelAndView = new ModelAndView("list-of-deals");
+
+        if (typeRequest == TypeRequest.All)
+            count = (int) Math.round(dealService.getCount() / (5 * 1.0));
+        if (typeRequest == TypeRequest.Done)
+            count = (int) Math.round(dealService.getDoneCount() / (5 * 1.0));
+        if (typeRequest == TypeRequest.NotDone)
+            count = (int) Math.round(dealService.getNotCount() / (5 * 1.0));
+
+
+        if (typeRequest == TypeRequest.All)
+            deals = dealService.getDeals(page * 5);
+        if (typeRequest == TypeRequest.Done)
+            deals = dealService.getDoneDeals(page * 5);
+        if (typeRequest == TypeRequest.NotDone)
+            deals = dealService.getNotDoneDeals(page * 5);
+
+
         PagedListHolder<Deal> pagedListHolder = new PagedListHolder<>(deals);
         pagedListHolder.setPageSize(5);
-        modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
+        modelAndView.addObject("maxPages", count-1);
 
-        if (page == null || page < 1 || page > pagedListHolder.getPageCount()) page = 1;
-
+        if (page == null || page < 0 || page > count) page = 0;
         modelAndView.addObject("page", page);
-        if (page == null || page < 1 || page > pagedListHolder.getPageCount()) {
+
+        if (page == null || page < 1 || page > count) {
             pagedListHolder.setPage(0);
             modelAndView.addObject("deals", pagedListHolder.getPageList());
-        } else if (page <= pagedListHolder.getPageCount()) {
+        } else if (page <= count) {
             pagedListHolder.setPage(page - 1);
             modelAndView.addObject("deals", pagedListHolder.getPageList());
         }
@@ -45,27 +65,26 @@ public class DealController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/all_deal")
     public ModelAndView allDeal() {
-        deals = dealService.getDeals();
+        typeRequest = TypeRequest.All;
         return nextPage(0);
     }
 
     @RequestMapping(value = "/done_deal")
     public ModelAndView doneDeal() {
-        deals = dealService.getDoneDeals();
+        typeRequest = TypeRequest.Done;
         return nextPage(0);
     }
 
     @RequestMapping(value = "/not_done_deal")
     public ModelAndView notDoneDeal() {
-        deals = dealService.getNotDoneDeals();
+        typeRequest = TypeRequest.NotDone;
         return nextPage(0);
     }
 
-    //    ========================================================================
 
+    //    ========================================================================
 //    ========================================================================
 //    ========================================================================
 //    ========================================================================
@@ -76,13 +95,12 @@ public class DealController {
     public ModelAndView testSearch(@RequestParam("name") String param) {
         List<Deal> de = dealService.getDealForId(Integer.parseInt(param));
         ModelAndView model = new ModelAndView("list-of-deals");
-        if(de.size() >0) {
+        if (de.size() > 0) {
             model.addObject("deals", de);
-        }else
-        {
+        } else {
             model = new ModelAndView("not-search");
         }
-        model.addObject("param",1);
+        model.addObject("param", 1);
         return model;
     }
 
@@ -145,5 +163,11 @@ public class DealController {
         String message = "10 дел добавленно";
         modelAndView.addObject("message", message);
         return modelAndView;
+    }
+
+    private static enum TypeRequest {
+        All,
+        Done,
+        NotDone
     }
 }

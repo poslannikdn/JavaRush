@@ -49,16 +49,6 @@ dealDAO.updateDeal(deal);
     }
 
     @Override
-    public List<Deal> getDoneDeals() {
-        return dealDAO.getDoneDeals();
-    }
-
-    @Override
-    public List<Deal> getNotDoneDeals() {
-        return dealDAO.getNotDoneDeals();
-    }
-
-    @Override
     public List<Deal> getDealForId(int i) {
         return dealDAO.getDealForId(i);
     }
@@ -66,5 +56,30 @@ dealDAO.updateDeal(deal);
     @Override
     public Integer getCount() {
         return dealDAO.getCount();
+    }
+
+    @Override
+    public List<Deal> getDeals(int page) {
+        return dealDAO.getDeals(page);
+    }
+
+    @Override
+    public List<Deal> getDoneDeals(int page) {
+        return dealDAO.getDoneDeals(page);
+    }
+
+    @Override
+    public List<Deal> getNotDoneDeals(int page) {
+        return dealDAO.getNotDoneDeals(page);
+    }
+
+    @Override
+    public int getDoneCount() {
+        return dealDAO.getDoneCount();
+    }
+
+    @Override
+    public int getNotCount() {
+        return dealDAO.getNotCount();
     }
 }

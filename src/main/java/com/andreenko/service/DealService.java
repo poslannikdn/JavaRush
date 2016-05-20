@@ -13,9 +13,14 @@ public interface DealService {
     Deal getDeal(int id);
     void deleteDeal(int id);
     List<Deal> getDeals();
+    List<Deal> getDeals(int page);
     void addDefaultRecord();
-    List<Deal> getDoneDeals();
-    List<Deal> getNotDoneDeals();
+    List<Deal> getDoneDeals(int page);
+    List<Deal> getNotDoneDeals(int page);
     List<Deal> getDealForId(int i);
+
+
     Integer getCount();
+    int getDoneCount();
+    int getNotCount();
 }

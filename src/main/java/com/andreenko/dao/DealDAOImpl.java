@@ -1,6 +1,7 @@
 package com.andreenko.dao;
 
 import com.andreenko.model.Deal;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -107,14 +109,20 @@ public class DealDAOImpl implements DealDAO {
     }
 
     @Override
-    public List<Deal> getDoneDeals() {
-        return getCurrentSession().createQuery("from Deal where done='1'").list();
+    public List<Deal> getDoneDeals(int page) {
+        Query query = this.getCurrentSession().createQuery("FROM Deal where done='1'");
+        query.setFirstResult(page);
+        query.setMaxResults(5);
+        return query.list();
+    }
+    @Override
+    public List<Deal> getNotDoneDeals(int page) {
+        Query query = this.getCurrentSession().createQuery("FROM Deal where done='0'");
+        query.setFirstResult(page);
+        query.setMaxResults(5);
+        return query.list();
     }
 
-    @Override
-    public List<Deal> getNotDoneDeals() {
-        return getCurrentSession().createQuery("from Deal where done='0'").list();
-    }
 
     @Override
     public List<Deal> getDealForId(int i) {
@@ -126,5 +134,23 @@ public class DealDAOImpl implements DealDAO {
         Long l = (Long) getCurrentSession().createCriteria(Deal.class).setProjection(Projections.rowCount()).uniqueResult();
         Integer i = new Integer(String.valueOf(l));
         return i;
+    }
+
+    @Override
+    public List<Deal> getDeals(int page) {
+        Query query = this.getCurrentSession().createQuery("FROM Deal");
+        query.setFirstResult(page);
+        query.setMaxResults(5);
+        return query.list();
+    }
+
+    @Override
+    public int getNotCount() {
+        return getCurrentSession().createQuery("from Deal where done='0'").list().size();
+    }
+
+    @Override
+    public int getDoneCount() {
+        return  getCurrentSession().createQuery("from Deal where done='1'").list().size();
     }
 }
