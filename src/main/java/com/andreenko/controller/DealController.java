@@ -32,11 +32,11 @@ public class DealController {
         modelAndView = new ModelAndView("list-of-deals");
 
         if (typeRequest == TypeRequest.All)
-            count = (int) Math.round(dealService.getCount() / (5 * 1.0));
+            count = (int) Math.ceil(dealService.getCount() / (5 * 1.0));
         if (typeRequest == TypeRequest.Done)
-            count = (int) Math.round(dealService.getDoneCount() / (5 * 1.0));
+            count = (int) Math.ceil(dealService.getDoneCount() / (5 * 1.0));
         if (typeRequest == TypeRequest.NotDone)
-            count = (int) Math.round(dealService.getNotCount() / (5 * 1.0));
+            count = (int) Math.ceil(dealService.getNotCount() / (5 * 1.0));
 
 
         if (typeRequest == TypeRequest.All)

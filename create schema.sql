@@ -16,3 +16,7 @@ INSERT INTO `test1`.`deal` (`business`, `done`, `add_date`) VALUES ('Покуш�
 INSERT INTO `test1`.`deal` (`business`, `done`, `add_date`) VALUES ('Отдохнуть', '0', '2016-05-21');
 INSERT INTO `test1`.`deal` (`business`, `done`, `add_date`) VALUES ('Еще Отдохнуть', '0', '2016-05-21');
 INSERT INTO `test1`.`deal` (`business`, `done`, `add_date`) VALUES ('И еще отдохнуть :)', '0', '2016-05-21');
+INSERT INTO `test1`.`deal` (`business`, `done`, `add_date`) VALUES ('Купить мячик', '0', '2016-05-22');
+INSERT INTO `test1`.`deal` (`business`, `done`, `add_date`) VALUES ('Вдохнуть выдохнуть', '0', '2016-05-21');
+INSERT INTO `test1`.`deal` (`business`, `done`, `add_date`) VALUES ('Игрануть в Квадрат', '0', '2016-05-21');
+INSERT INTO `test1`.`deal` (`business`, `done`, `add_date`) VALUES ('Отдохнуть :)', '0', '2016-05-21');
